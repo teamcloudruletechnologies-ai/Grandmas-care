@@ -1,3 +1,15 @@
+import herbalBathPowder from '../assets/products/herbal-bath-powder.jpg';
+import wildTurmericPowder from '../assets/products/wild-turmeric-powder.jpg';
+import gramFlour from '../assets/products/gram-flour.jpg';
+import greenGramFlour from '../assets/products/green-gram-flour.jpg';
+import pinkFacePack from '../assets/products/pink-face-pack.jpg';
+import ayurglowHairPack from '../assets/products/ayurglow-hair-pack.jpg';
+import kerelaAyurvedicHairOil from '../assets/products/kerela-ayurvedic-hair-oil.jpg';
+import slimFitWeightloss from '../assets/products/slim-fit-weightloss.jpg';
+import kambuMaavu from '../assets/products/kambu-maavu.jpg';
+import blackRiceKanji from '../assets/products/black-rice-kanji.jpg';
+import milletHealthMix from '../assets/products/millet-health-mix.jpg';
+
 export const herbalCategories = [
   'All',
   'Bath & Skin',
@@ -18,7 +30,7 @@ export const herbalProducts = [
     rating: 4.8,
     reviewsCount: 124,
     tag: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop&q=80',
+    image: herbalBathPowder,
     description: 'Traditional Tamil herbal bath powder made with a blend of natural herbs. Cleanses skin deeply, removes tan, and gives a natural glow. 100% chemical-free.',
     benefits: ['Deep cleansing', 'Removes tan', 'Natural glow', 'Chemical-free'],
     ingredients: ['Vetiver', 'Green Gram', 'Turmeric', 'Neem', 'Sandalwood'],
@@ -34,7 +46,7 @@ export const herbalProducts = [
     rating: 4.9,
     reviewsCount: 98,
     tag: 'Premium',
-    image: 'https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=600&auto=format&fit=crop&q=80',
+    image: wildTurmericPowder,
     description: 'Pure wild turmeric (Kasthuri Manjal) sourced from organic farms. Known for its anti-inflammatory and skin-brightening properties. Ideal for face packs and body application.',
     benefits: ['Anti-inflammatory', 'Skin brightening', 'Anti-acne', 'Organic'],
     ingredients: ['Wild Turmeric Root'],
@@ -50,7 +62,7 @@ export const herbalProducts = [
     rating: 4.7,
     reviewsCount: 87,
     tag: 'Kitchen Essential',
-    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80',
+    image: gramFlour,
     description: 'Freshly milled gram flour (besan) made from premium chana dal. Perfect for cooking, baking, and skincare face packs. High in protein and gluten-free.',
     benefits: ['High protein', 'Gluten-free', 'Multi-use', 'Freshly milled'],
     ingredients: ['Chana Dal (Split Chickpeas)'],
@@ -66,7 +78,7 @@ export const herbalProducts = [
     rating: 4.8,
     reviewsCount: 76,
     tag: 'Superfood',
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80',
+    image: greenGramFlour,
     description: 'Nutrient-rich green gram flour packed with vitamins and minerals. Excellent for sprouted health drinks, dosa batter, and face packs. Boosts immunity naturally.',
     benefits: ['Rich in vitamins', 'Immunity booster', 'Multi-purpose', 'Sprouted'],
     ingredients: ['Green Gram (Moong Dal)'],
@@ -82,7 +94,7 @@ export const herbalProducts = [
     rating: 4.9,
     reviewsCount: 156,
     tag: 'Top Rated',
-    image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&auto=format&fit=crop&q=80',
+    image: pinkFacePack,
     description: 'Premium herbal pink face pack with rose petals and rare botanical extracts. Brightens complexion, tightens pores, and provides a youthful radiance. Suitable for all skin types.',
     benefits: ['Brightens complexion', 'Tightens pores', 'Youthful glow', 'All skin types'],
     ingredients: ['Rose Petals', 'Sandalwood', 'Multani Mitti', 'Kasthuri Manjal'],
@@ -98,7 +110,7 @@ export const herbalProducts = [
     rating: 4.7,
     reviewsCount: 92,
     tag: 'Haircare',
-    image: 'https://images.unsplash.com/photo-1608248543803-ba448818d327?w=600&auto=format&fit=crop&q=80',
+    image: ayurglowHairPack,
     description: 'Ayurvedic hair treatment pack that strengthens roots, reduces hair fall, and promotes natural hair growth. Infused with amla, bhringraj, and henna for deep conditioning.',
     benefits: ['Reduces hair fall', 'Promotes growth', 'Deep conditioning', 'Strengthens roots'],
     ingredients: ['Amla', 'Bhringraj', 'Henna', 'Shikakai', 'Neem'],
@@ -114,7 +126,7 @@ export const herbalProducts = [
     rating: 4.8,
     reviewsCount: 143,
     tag: 'Ayurvedic',
-    image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600&auto=format&fit=crop&q=80',
+    image: kerelaAyurvedicHairOil,
     description: 'Authentic Kerala-style Ayurvedic hair oil prepared with coconut oil base and 21+ herbs. Prevents premature graying, dandruff, and split ends. Cold-pressed and pure.',
     benefits: ['Prevents graying', 'Fights dandruff', 'Cold-pressed', '21+ herbs'],
     ingredients: ['Coconut Oil', 'Brahmi', 'Amla', 'Curry Leaves', 'Hibiscus'],
@@ -130,7 +142,7 @@ export const herbalProducts = [
     rating: 4.6,
     reviewsCount: 67,
     tag: 'Wellness',
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format&fit=crop&q=80',
+    image: slimFitWeightloss,
     description: 'Natural weight management drink mix made with millets, flax seeds, and Garcinia. Low calorie, high fiber formula that supports healthy metabolism and sustainable weight loss.',
     benefits: ['Low calorie', 'High fiber', 'Metabolism boost', 'Natural ingredients'],
     ingredients: ['Millets', 'Flax Seeds', 'Garcinia', 'Cinnamon', 'Green Tea Extract'],
@@ -146,7 +158,7 @@ export const herbalProducts = [
     rating: 4.7,
     reviewsCount: 54,
     tag: 'Traditional',
-    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80',
+    image: kambuMaavu,
     description: 'Stone-ground pearl millet flour — a staple of Tamil Nadu village diet. Rich in iron, calcium, and fiber. Makes nutritious kambu koozh (porridge) and rotis.',
     benefits: ['Rich in iron', 'High fiber', 'Stone-ground', 'Traditional recipe'],
     ingredients: ['Pearl Millet (Kambu)'],
@@ -162,7 +174,7 @@ export const herbalProducts = [
     rating: 4.9,
     reviewsCount: 112,
     tag: 'Superfood',
-    image: 'https://images.unsplash.com/photo-1536304993881-460e32f48625?w=600&auto=format&fit=crop&q=80',
+    image: blackRiceKanji,
     description: 'Ancient grain black rice kanji mix loaded with antioxidants. Rich in anthocyanins that support heart health and anti-aging. Easy to prepare — just add hot water or milk.',
     benefits: ['High antioxidants', 'Heart healthy', 'Anti-aging', 'Easy to prepare'],
     ingredients: ['Black Rice', 'Jaggery', 'Cardamom', 'Dry Ginger'],
@@ -178,7 +190,7 @@ export const herbalProducts = [
     rating: 4.8,
     reviewsCount: 189,
     tag: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop&q=80',
+    image: milletHealthMix,
     description: 'Multi-millet health drink mix combining 9 traditional millets. Rich in iron, calcium, and fiber. Perfect morning health drink for all ages. Just mix with hot milk.',
     benefits: ['9 millets blend', 'All ages', 'Rich nutrition', 'Easy to prepare'],
     ingredients: ['Ragi', 'Kambu', 'Thinai', 'Kuthiraivali', 'Samai', 'Varagu', 'Kambang', 'Saamai', 'Thinai'],
