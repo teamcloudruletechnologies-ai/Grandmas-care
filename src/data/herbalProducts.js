@@ -9,6 +9,7 @@ import slimFitWeightloss from '../assets/products/slim-fit-weightloss.jpg';
 import kambuMaavu from '../assets/products/kambu-maavu.jpg';
 import blackRiceKanji from '../assets/products/black-rice-kanji.jpg';
 import milletHealthMix from '../assets/products/millet-health-mix.jpg';
+import abcMalt from '../assets/products/abc-malt.png';
 
 export const herbalCategories = [
   'All',
@@ -206,7 +207,7 @@ export const herbalProducts = [
     rating: 4.7,
     reviewsCount: 134,
     tag: 'Healthy',
-    image: 'https://images.unsplash.com/photo-1505576399279-0d754e0e4e8e?w=600&auto=format&fit=crop&q=80',
+    image: abcMalt,
     description: 'Nutritious ABC malt (Apple + Beetroot + Carrot) health drink mix. Loaded with natural vitamins, minerals, and fiber. Strengthens immunity and supports healthy growth in kids and adults.',
     benefits: ['Natural vitamins', 'Immunity boost', 'Kids friendly', 'No additives'],
     ingredients: ['Apple', 'Beetroot', 'Carrot', 'Badam', 'Dates'],

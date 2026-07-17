@@ -127,7 +127,7 @@ export default function Shop() {
                 ) : (
                   filteredProducts.map((p) => (
                     <motion.div layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.3 }} key={p.id} className="glass-panel rounded-3xl overflow-hidden hover:border-emerald-300 flex flex-col justify-between h-[480px] relative group shimmer-effect">
-                      <div className="absolute top-4 left-4 z-10 flex gap-2">
+                      <div className="absolute top-4 left-4 z-10 flex flex-row items-center gap-1.5 flex-wrap" style={{ display: 'flex', gap: '6px', flexDirection: 'row', alignItems: 'center' }}>
                         {p.tag && <span className="bg-emerald-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded tracking-wider shadow-md">{p.tag}</span>}
                         <span className="bg-white border border-emerald-200 text-emerald-700 text-[9px] font-bold uppercase px-2.5 py-1 rounded">{p.category}</span>
                       </div>

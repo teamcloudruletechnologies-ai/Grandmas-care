@@ -17,21 +17,24 @@ export default function Home() {
       subtitle: 'Nalangu Maavu & Kasthuri Manjal',
       description: 'Traditional Tamil herbal powders for glowing skin. 100% natural, chemical-free, made from time-honored village recipes.',
       badge: 'Best Seller',
-      image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&auto=format&fit=crop&q=80'
+      image: herbalProducts.find(p => p.id === 'herbal-bath-powder')?.image,
+      productId: 'herbal-bath-powder'
     },
     {
       title: 'Millet Health Mixes',
       subtitle: 'Kambu, Ragi & Multi-Millet Blends',
       description: 'Power your mornings with nutrient-rich millet health drinks. Packed with iron, calcium, and fiber for all ages.',
       badge: 'Superfood',
-      image: 'https://images.unsplash.com/photo-1536304993881-460e32f48625?w=800&auto=format&fit=crop&q=80'
+      image: herbalProducts.find(p => p.id === 'millet-health-mix')?.image,
+      productId: 'millet-health-mix'
     },
     {
       title: 'Ayurvedic Hair Care',
       subtitle: 'Kerala Hair Oil & Ayurglow Pack',
       description: 'Authentic Ayurvedic hair treatments with 21+ herbs. Strengthens roots, reduces hair fall, promotes natural growth.',
       badge: 'Ayurvedic',
-      image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&auto=format&fit=crop&q=80'
+      image: herbalProducts.find(p => p.id === 'kerela-ayurvedic-hair-oil')?.image,
+      productId: 'kerela-ayurvedic-hair-oil'
     }
   ];
 
@@ -78,8 +81,8 @@ export default function Home() {
                   <p className="text-sm sm:text-base text-emerald-700/70 leading-relaxed max-w-xl">{heroSlides[currentHeroIdx].description}</p>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Link to="/shop" className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-8 py-4 rounded-xl transition-all shadow-lg shadow-emerald-600/20 hover:scale-[1.03] text-center">
-                      Explore Products
+                    <Link to={`/product/${heroSlides[currentHeroIdx].productId}`} className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-8 py-4 rounded-xl transition-all shadow-lg shadow-emerald-600/20 hover:scale-[1.03] text-center">
+                      View Product
                     </Link>
                     <a href="https://api.whatsapp.com/send?phone=+919876543210&text=Hi%2C%20I%20want%20to%20order%20herbal%20products" target="_blank" rel="noopener noreferrer" className="glass-panel text-emerald-700 hover:border-emerald-400 font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.03]">
                       <FaWhatsapp className="text-emerald-500 text-xl" />
@@ -90,7 +93,9 @@ export default function Home() {
 
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.7 }} className="hidden lg:col-span-5 lg:flex justify-center relative">
                   <div className="absolute w-[350px] h-[350px] border border-dashed border-emerald-300/40 rounded-full -z-10 animate-spin-slow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                  <img src={heroSlides[currentHeroIdx].image} alt={heroSlides[currentHeroIdx].title} className="w-[320px] h-[400px] object-cover rounded-3xl drop-shadow-[0_25px_60px_rgba(16,185,129,0.2)] animate-float" />
+                  <Link to={`/product/${heroSlides[currentHeroIdx].productId}`}>
+                    <img src={heroSlides[currentHeroIdx].image} alt={heroSlides[currentHeroIdx].title} className="w-[320px] h-[400px] object-cover rounded-3xl drop-shadow-[0_25px_60px_rgba(16,185,129,0.2)] animate-float cursor-pointer hover:scale-[1.02] transition-transform duration-300" />
+                  </Link>
                   <div className="absolute bottom-6 -left-6 glass-panel p-5 rounded-2xl max-w-xs shadow-2xl border border-emerald-100">
                     <div className="flex items-center gap-1.5 text-amber-500 mb-1">
                       <FiStar className="fill-amber-500" />
