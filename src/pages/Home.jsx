@@ -5,6 +5,7 @@ import { herbalProducts } from '../data/herbalProducts';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiStar } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import ProductCard from '../components/ProductCard';
 
 export default function Home() {
   const { addToCart } = useInquiry();
@@ -13,122 +14,158 @@ export default function Home() {
 
   const heroSlides = [
     {
-      title: 'Herbal Bath Powders',
+      title: 'Traditional Skincare Powders',
       subtitle: 'Nalangu Maavu & Kasthuri Manjal',
-      description: 'Traditional Tamil herbal powders for glowing skin. 100% natural, chemical-free, made from time-honored village recipes.',
-      badge: 'Best Seller',
+      description: 'Hand-milled botanicals ground carefully according to village wellness traditions. Formulated for glowing, clear, and chemical-free skin.',
+      badge: 'Traditional Wisdom',
       image: herbalProducts.find(p => p.id === 'herbal-bath-powder')?.image,
       productId: 'herbal-bath-powder'
     },
     {
-      title: 'Millet Health Mixes',
-      subtitle: 'Kambu, Ragi & Multi-Millet Blends',
-      description: 'Power your mornings with nutrient-rich millet health drinks. Packed with iron, calcium, and fiber for all ages.',
-      badge: 'Superfood',
+      title: 'Artisanal Health Drink Mixes',
+      subtitle: 'Stone-Ground Multi-Millet Blends',
+      description: 'Power your mornings with pure sprouted millets. Packed with vital iron, calcium, and dietary fiber for whole family wellness.',
+      badge: 'Pure Nutrition',
       image: herbalProducts.find(p => p.id === 'millet-health-mix')?.image,
       productId: 'millet-health-mix'
     },
     {
-      title: 'Ayurvedic Hair Care',
-      subtitle: 'Kerala Hair Oil & Ayurglow Pack',
-      description: 'Authentic Ayurvedic hair treatments with 21+ herbs. Strengthens roots, reduces hair fall, promotes natural growth.',
-      badge: 'Ayurvedic',
+      title: 'Botanical Hair Pack Treatments',
+      subtitle: 'Cold-Pressed Herbal Hair Remedies',
+      description: 'Strengthen follicles and reduce hair fall with cold-pressed oils infused with 21 active roots and fresh hibiscus extracts.',
+      badge: 'Root Therapy',
       image: herbalProducts.find(p => p.id === 'kerela-ayurvedic-hair-oil')?.image,
       productId: 'kerela-ayurvedic-hair-oil'
     }
   ];
 
   const reviews = [
-    { name: 'Priya Ramanathan', role: 'Homemaker', rating: 5, comment: 'The Nalangu Maavu is amazing! My skin feels so soft and glowing after just one week of use. Pure village quality — no chemicals at all.' },
-    { name: 'Anitha Selvam', role: 'Yoga Instructor', rating: 5, comment: 'I use the Millet Health Mix every morning. It gives me energy throughout my yoga sessions. My whole family loves it!' },
-    { name: 'Kavitha Murugan', role: 'Wellness Blogger', rating: 5, comment: 'The Kerala Ayurvedic Hair Oil transformed my hair. Reduced hair fall significantly within 2 weeks. Best herbal product I have ever used.' },
-    { name: 'Meena Devi', role: 'Chef', rating: 4, comment: 'The Kambu Maavu and ABC Malt are kitchen staples now. Great quality, fresh packing, and authentic taste. Highly recommended!' }
+    { name: 'Priya Ramanathan', role: 'Homemaker', rating: 5, comment: 'The Nalangu Maavu is truly therapeutic! The raw aroma of fresh herbs is incredible, and it leaves my skin feeling beautifully clean and smooth.' },
+    { name: 'Anitha Selvam', role: 'Yoga Instructor', rating: 5, comment: 'I have substituted processed breakfast cereals with their Millet Mix. Clean, wholesome energy that lasts through my intense yoga classes.' },
+    { name: 'Kavitha Murugan', role: 'Wellness Blogger', rating: 5, comment: 'Their Kerala Ayurvedic Hair Oil is a staple now. Visible reduction in hair breakage in under three weeks. Standard artisanal quality!' },
+    { name: 'Meena Devi', role: 'Chef', rating: 5, comment: 'Very clean formulation and authentic taste. The stone-ground quality makes a huge difference in texture and effectiveness.' }
   ];
 
   const featuredProducts = herbalProducts.slice(0, 6);
 
   useEffect(() => {
-    const heroInterval = setInterval(() => setCurrentHeroIdx((prev) => (prev + 1) % heroSlides.length), 6000);
-    const reviewInterval = setInterval(() => setActiveReviewIdx((prev) => (prev + 1) % reviews.length), 5000);
+    const heroInterval = setInterval(() => setCurrentHeroIdx((prev) => (prev + 1) % heroSlides.length), 7000);
+    const reviewInterval = setInterval(() => setActiveReviewIdx((prev) => (prev + 1) % reviews.length), 6000);
     return () => { clearInterval(heroInterval); clearInterval(reviewInterval); };
-  }, []);
+  }, [heroSlides.length, reviews.length]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f0fdf4]">
+    <div className="relative min-h-screen overflow-hidden bg-[#f9fbf9] selection:bg-emerald-600 selection:text-white">
+      
+      {/* Ambient background decoration */}
+      <div className="glow-blob w-[600px] h-[600px] -top-40 -left-40 bg-emerald-100/30 animate-pulse-slow" />
+      <div className="glow-blob w-[700px] h-[700px] top-[25vh] -right-40 bg-teal-50/20 animate-pulse-slow" style={{ animationDelay: '3.5s' }} />
+      <div className="glow-blob w-[600px] h-[600px] bottom-10 left-1/4 bg-emerald-55/10 animate-pulse-slow" style={{ animationDelay: '5.5s' }} />
 
-      <div className="glow-blob w-[400px] h-[400px] -top-20 -left-20 animate-pulse-slow" style={{ background: 'rgba(16,185,129,0.08)' }} />
-      <div className="glow-blob w-[500px] h-[500px] top-[40vh] -right-40 animate-pulse-slow" style={{ background: 'rgba(34,197,94,0.06)', animationDelay: '2s' }} />
-      <div className="glow-blob w-[600px] h-[600px] bottom-10 left-1/4 animate-pulse-slow" style={{ background: 'rgba(16,185,129,0.04)', animationDelay: '4s' }} />
-
-      {/* HERO */}
-      <section className="relative h-[85vh] sm:h-[90vh] flex items-center overflow-hidden border-b border-emerald-100 z-10">
-        <AnimatePresence mode="wait">
-          <motion.div key={currentHeroIdx} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0 w-full h-full">
-            <motion.div initial={{ scale: 1.05 }} animate={{ scale: 1 }} transition={{ duration: 6 }} className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroSlides[currentHeroIdx].image})`, filter: 'brightness(0.25) contrast(1.1) blur(1px)' }} />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#f0fdf4] via-[#f0fdf4]/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#f0fdf4] via-transparent to-transparent" />
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center relative z-20">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-                <motion.div initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="space-y-6 lg:col-span-7 text-left">
-                  <span className="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] sm:text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full inline-block">
+      {/* HERO SECTION */}
+      <section className="relative min-h-[95vh] sm:min-h-screen flex items-center pt-28 pb-16 border-b border-emerald-500/5 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-7 text-left relative z-20">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentHeroIdx}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.6 }}
+                  className="space-y-6"
+                >
+                  <span className="inline-flex items-center gap-1.5 bg-emerald-500/5 text-emerald-800 border border-emerald-500/10 text-[9px] font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full">
+                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping" />
                     {heroSlides[currentHeroIdx].badge}
                   </span>
-                  <h1 className="text-4xl sm:text-7xl font-black font-display tracking-tight text-emerald-900 leading-tight">
+                  
+                  <h1 className="text-4xl sm:text-6.5xl lg:text-7xl font-light font-display tracking-wide text-emerald-950 leading-[1.08]">
                     {heroSlides[currentHeroIdx].title}
-                    <span className="text-gradient block font-black">{heroSlides[currentHeroIdx].subtitle}</span>
+                    <span className="text-gradient block font-normal mt-3.5 italic">
+                      {heroSlides[currentHeroIdx].subtitle}
+                    </span>
                   </h1>
-                  <p className="text-sm sm:text-base text-emerald-700/70 leading-relaxed max-w-xl">{heroSlides[currentHeroIdx].description}</p>
+                  
+                  <p className="text-xs sm:text-sm text-emerald-950/50 leading-relaxed max-w-lg font-medium">
+                    {heroSlides[currentHeroIdx].description}
+                  </p>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Link to={`/product/${heroSlides[currentHeroIdx].productId}`} className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-8 py-4 rounded-xl transition-all shadow-lg shadow-emerald-600/20 hover:scale-[1.03] text-center">
-                      View Product
+                  <div className="flex flex-col sm:flex-row gap-4 pt-5">
+                    <Link 
+                      to={`/product/${heroSlides[currentHeroIdx].productId}`} 
+                      className="bg-emerald-850 hover:bg-emerald-900 text-white font-bold text-[10px] uppercase tracking-[0.2em] px-9 py-4.5 rounded-xl transition-all shadow-md shadow-emerald-950/10 hover:-translate-y-0.5 text-center active:translate-y-0 cursor-pointer"
+                    >
+                      Discover Remedy
                     </Link>
-                    <a href="https://api.whatsapp.com/send?phone=+919876543210&text=Hi%2C%20I%20want%20to%20order%20herbal%20products" target="_blank" rel="noopener noreferrer" className="glass-panel text-emerald-700 hover:border-emerald-400 font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.03]">
-                      <FaWhatsapp className="text-emerald-500 text-xl" />
-                      <span>Order on WhatsApp</span>
+                    <a 
+                      href="https://api.whatsapp.com/send?phone=+918015080361&text=Hi%20Grandmas%20Care%2C%20I%2527m%20interested%20in%20your%20traditional%20remedies%21" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="glass-panel text-emerald-900 border-emerald-500/10 hover:border-emerald-500/20 font-bold text-[10px] uppercase tracking-[0.2em] px-9 py-4.5 rounded-xl transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer bg-white/40"
+                    >
+                      <FaWhatsapp className="text-emerald-500 text-base" />
+                      <span>WhatsApp Order</span>
                     </a>
                   </div>
                 </motion.div>
+              </AnimatePresence>
+            </div>
 
-                <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4, duration: 0.7 }} className="hidden lg:col-span-5 lg:flex justify-center relative">
-                  <div className="absolute w-[350px] h-[350px] border border-dashed border-emerald-300/40 rounded-full -z-10 animate-spin-slow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            {/* Right Display Column */}
+            <div className="lg:col-span-5 flex justify-center relative z-10 mt-8 lg:mt-0">
+              <div className="absolute w-[380px] h-[380px] border border-dashed border-emerald-500/10 rounded-full animate-spin-slow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10" />
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentHeroIdx}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.6 }}
+                  className="relative group cursor-pointer"
+                >
                   <Link to={`/product/${heroSlides[currentHeroIdx].productId}`}>
-                    <img src={heroSlides[currentHeroIdx].image} alt={heroSlides[currentHeroIdx].title} className="w-[320px] h-[400px] object-cover rounded-3xl drop-shadow-[0_25px_60px_rgba(16,185,129,0.2)] animate-float cursor-pointer hover:scale-[1.02] transition-transform duration-300" />
+                    <img 
+                      src={heroSlides[currentHeroIdx].image} 
+                      alt={heroSlides[currentHeroIdx].title} 
+                      className="w-[280px] sm:w-[330px] h-[370px] sm:h-[430px] object-contain bg-white p-6 rounded-[32px] shadow-[0_24px_60px_rgba(11,34,22,0.06)] border border-emerald-500/10 group-hover:scale-[1.01] transition-all duration-500" 
+                    />
                   </Link>
-                  <div className="absolute bottom-6 -left-6 glass-panel p-5 rounded-2xl max-w-xs shadow-2xl border border-emerald-100">
-                    <div className="flex items-center gap-1.5 text-amber-500 mb-1">
-                      <FiStar className="fill-amber-500" />
-                      <span className="text-[11px] font-black">4.8 Average Rating</span>
+                  
+                  {/* Floating Trust Indicator */}
+                  <div className="absolute -bottom-5 -left-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-[0_15px_35px_rgba(11,34,22,0.03)] border border-emerald-500/5 max-w-xs text-left">
+                    <div className="flex items-center gap-1.5 text-amber-600 mb-1.5">
+                      <FiStar className="fill-amber-600 text-xs" />
+                      <span className="text-[9px] font-bold tracking-[0.15em] uppercase">4.9 Star Trust</span>
                     </div>
-                    <p className="text-xs text-emerald-800 font-black">Trusted by 1000+ happy customers</p>
+                    <p className="text-[11px] text-emerald-950 font-bold uppercase tracking-wider">Loved by 10,000+ Families</p>
                   </div>
                 </motion.div>
-              </div>
+              </AnimatePresence>
             </div>
-          </motion.div>
-        </AnimatePresence>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2.5">
-          {heroSlides.map((_, idx) => (
-            <button key={idx} onClick={() => setCurrentHeroIdx(idx)} className={`h-2 rounded-full transition-all duration-500 ${currentHeroIdx === idx ? 'bg-emerald-500 w-10 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-emerald-200 w-2.5'}`} />
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* TRUST BADGES */}
-      <section className="py-12 border-b border-emerald-100 relative z-10">
+      {/* TRUST BADGES SECTION */}
+      <section className="py-14 border-b border-emerald-500/5 relative z-10 bg-white/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: '100%', label: 'Chemical Free' },
-              { icon: '🌿', label: 'Farm Fresh' },
-              { icon: '👵', label: 'Traditional Recipe' },
-              { icon: '📦', label: 'Pan India Delivery' }
+              { icon: '🌿', label: '100% Chemical Free', desc: 'Preservative-free grinding' },
+              { icon: '🌾', label: 'Direct Organic Sourcing', desc: 'From Tamil Nadu co-ops' },
+              { icon: '👵', label: 'Artisanal Recipes', desc: 'Formulated by home guides' },
+              { icon: '📦', label: 'India-Wide Shipping', desc: 'Securely sealed freshness' }
             ].map((item, i) => (
-              <div key={i} className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center hover:border-emerald-300 transition">
-                <span className="text-3xl mb-3">{item.icon}</span>
-                <span className="text-xs font-black text-emerald-800 uppercase tracking-wider">{item.label}</span>
+              <div key={i} className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center transition-all hover:bg-white duration-300">
+                <span className="text-3xl mb-3.5">{item.icon}</span>
+                <span className="text-[10px] font-bold text-emerald-950 uppercase tracking-[0.2em] mb-1.5">{item.label}</span>
+                <span className="text-[10px] text-emerald-600/70 font-semibold">{item.desc}</span>
               </div>
             ))}
           </div>
@@ -136,147 +173,147 @@ export default function Home() {
       </section>
 
       {/* FEATURED PRODUCTS */}
-      <section className="py-24 border-b border-emerald-100 relative z-10">
+      {/* PRODUCT CATALOG COLLECTION */}
+      <section className="py-28 border-b border-[#0A4D2E]/5 relative z-10 bg-[#FAF8F3]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-16">
-            <div>
-              <span className="text-emerald-500 font-extrabold uppercase tracking-wider text-xs">Our Products</span>
-              <h2 className="text-3xl sm:text-5xl font-black font-display text-emerald-900 mt-2">Featured Collection</h2>
+            <div className="text-left">
+              <span className="text-[#0A4D2E] font-extrabold uppercase tracking-[0.25em] text-[10px]">Ancient Wellness Collection</span>
+              <h2 className="text-3xl sm:text-5xl font-light font-display text-[#1F2937] mt-1">Holistic Remedies</h2>
+              <div className="h-[1.5px] w-14 bg-[#D4AF37] mt-4" />
+              <p className="text-xs sm:text-sm text-[#1F2937]/60 mt-4 leading-relaxed font-medium max-w-2xl">
+                Curated Ayurvedic essentials crafted from traditional ingredients and timeless herbal wisdom.
+              </p>
             </div>
-            <Link to="/shop" className="text-emerald-600 hover:text-emerald-700 font-extrabold text-sm flex items-center gap-1 mt-4 sm:mt-0 transition group">
-              <span>View All Products</span>
-              <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/shop" className="text-[#0A4D2E] hover:text-[#0F7A43] font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-1.5 mt-6 sm:mt-0 transition duration-300 group">
+              <span>View All Remedies</span>
+              <FiArrowRight className="group-hover:translate-x-1.5 transition-transform" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((p) => (
-              <motion.div key={p.id} whileHover={{ y: -8 }} className="glass-panel rounded-3xl overflow-hidden hover:border-emerald-300 flex flex-col justify-between h-[470px] group relative shimmer-effect">
-                <div className="relative p-6 flex justify-center bg-emerald-50/50 border-b border-emerald-100/60 h-[220px] items-center overflow-hidden">
-                  <div className="absolute w-24 h-24 bg-emerald-400/10 rounded-full blur-xl group-hover:bg-emerald-400/20 transition-colors" />
-                  <span className="absolute top-4 left-4 bg-emerald-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded-md z-10 tracking-widest shadow-md">{p.tag}</span>
-                  <img src={p.image} alt={p.name} className="max-h-[160px] object-contain group-hover:scale-105 transition-transform duration-500 z-10" />
-                </div>
-                <div className="p-6 flex-grow flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between text-emerald-500 text-[10px] font-bold tracking-wider mb-1 uppercase">
-                      <span>{p.tamilName}</span>
-                      <span className="flex items-center text-amber-500 gap-0.5">
-                        <FiStar className="fill-amber-500" /><strong>{p.rating}</strong>
-                      </span>
-                    </div>
-                    <h3 className="text-base font-black text-emerald-900 group-hover:text-emerald-600 transition-colors line-clamp-1">{p.name}</h3>
-                    <div className="flex gap-2.5 mt-3">
-                      <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-lg">{p.weight}</span>
-                      <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-lg">{p.category}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-baseline justify-between mb-4 border-t border-emerald-100 pt-4">
-                      <span className="text-2xl font-black text-emerald-700">₹{p.price}</span>
-                      {p.originalPrice && <span className="text-xs text-emerald-400 line-through">₹{p.originalPrice}</span>}
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Link to={`/product/${p.id}`} className="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-extrabold text-xs py-3 rounded-xl border border-emerald-200 text-center transition">Details</Link>
-                      <button onClick={() => addToCart(p)} className="bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs py-3 rounded-xl transition-all hover:shadow-md hover:shadow-emerald-500/20">Add to Cart</button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <ProductCard key={p.id} product={p} addToCart={addToCart} />
             ))}
           </div>
+
         </div>
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-24 border-b border-emerald-100 relative z-10">
+      <section className="py-28 border-b border-emerald-500/5 relative z-10 bg-white/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-emerald-500 font-extrabold uppercase tracking-wider text-xs">Our Promise</span>
-            <h2 className="text-3xl sm:text-5xl font-black font-display text-emerald-900 mt-2 mb-4">Why Tamila Natural?</h2>
-            <div className="h-1 w-20 bg-emerald-500 mx-auto rounded-full mb-4" />
-            <p className="text-emerald-700/60 text-sm">We bring you the finest traditional Tamil herbal products, directly sourced from village artisans and organic farms.</p>
+          
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-emerald-500 font-extrabold uppercase tracking-[0.25em] text-[10px]">Grandmas Promise</span>
+            <h2 className="text-3xl sm:text-5xl font-light font-display text-emerald-950 mt-1">Sourced from Nature</h2>
+            <div className="h-[1px] w-12 bg-emerald-600/35 mx-auto mt-3.5" />
+            <p className="text-emerald-950/50 text-xs sm:text-sm mt-4 font-medium leading-relaxed">We package organic Tamil heritage remedies directly from clean rural micro-farms without any additive compromises.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: '100% Natural', desc: 'No chemicals, preservatives, or artificial additives. Pure ingredients from nature.', icon: '🌿' },
-              { title: 'Traditional Recipes', desc: 'Time-honored Tamil village recipes passed down through generations.', icon: '👵' },
-              { title: 'Farm Fresh', desc: 'Directly sourced from organic farms and village co-operatives.', icon: '🌾' },
-              { title: 'Pan India Delivery', desc: 'Free shipping across India. Fresh packing with secure delivery.', icon: '📦' }
+              { title: '100% Raw Herbs', desc: 'Zero artificial elements, synthetic chemicals or ground fillers. Just pure botanical elements.', icon: '🌿' },
+              { title: 'Artisanal Recipes', desc: 'Standard home formulation rules handed down in villages over generations.', icon: '📜' },
+              { title: 'Fair Partnerships', desc: 'Providing fair wages directly to our farming partners and village women cooperatives.', icon: '🤝' },
+              { title: 'Air-Tight Freshness', desc: 'Carefully sealed in ecological jars to ensure that pure herbal aromas remain intact.', icon: '📦' }
             ].map((item, idx) => (
-              <div key={idx} className="glass-panel p-8 rounded-3xl flex flex-col items-center text-center hover:border-emerald-300 transition duration-300 group">
-                <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 text-3xl">
+              <div key={idx} className="glass-panel p-8 rounded-3xl flex flex-col items-center text-center transition-all hover:bg-white duration-300 group">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-500/5 flex items-center justify-center mb-6 group-hover:scale-102 transition-all duration-300 text-2xl shadow-sm">
                   {item.icon}
                 </div>
-                <h3 className="text-emerald-900 font-black text-lg mb-3">{item.title}</h3>
-                <p className="text-emerald-600/60 text-xs leading-relaxed">{item.desc}</p>
+                <h3 className="text-emerald-955 font-bold text-base mb-2 font-display">{item.title}</h3>
+                <p className="text-emerald-955/50 text-xs leading-relaxed font-semibold">{item.desc}</p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 border-b border-emerald-100 relative z-10">
+      <section className="py-28 border-b border-emerald-500/5 relative z-10 bg-white/10">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="text-emerald-500 font-extrabold uppercase tracking-wider text-xs">Customer Love</span>
-          <h2 className="text-3xl sm:text-5xl font-black font-display text-emerald-900 mt-2 mb-12">What People Say</h2>
+          <span className="text-emerald-500 font-extrabold uppercase tracking-[0.25em] text-[10px]">Testimonials</span>
+          <h2 className="text-3xl sm:text-5xl font-light font-display text-emerald-950 mt-1 mb-16">Customer Love</h2>
 
           <div className="relative min-h-[220px] flex items-center justify-center">
             <AnimatePresence mode="wait">
-              <motion.div key={activeReviewIdx} initial={{ opacity: 0, scale: 0.96, y: 15 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96, y: -15 }} transition={{ duration: 0.5 }} className="space-y-6">
+              <motion.div 
+                key={activeReviewIdx} 
+                initial={{ opacity: 0, scale: 0.98, y: 15 }} 
+                animate={{ opacity: 1, scale: 1, y: 0 }} 
+                exit={{ opacity: 0, scale: 0.98, y: -15 }} 
+                transition={{ duration: 0.45 }} 
+                className="space-y-6"
+              >
                 <div className="flex justify-center gap-1 text-amber-500">
-                  {[...Array(5)].map((_, i) => <FiStar key={i} className={`text-xl ${i < Math.floor(reviews[activeReviewIdx].rating) ? 'fill-amber-500' : 'text-emerald-200'}`} />)}
+                  {[...Array(reviews[activeReviewIdx].rating)].map((_, i) => (
+                    <FiStar key={i} className="text-base fill-amber-500 text-amber-500" />
+                  ))}
                 </div>
-                <p className="text-lg sm:text-2xl text-emerald-800 leading-relaxed font-semibold italic max-w-3xl mx-auto font-display">"{reviews[activeReviewIdx].comment}"</p>
-                <div className="flex items-center justify-center gap-3.5 pt-4">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black text-lg border-2 border-emerald-300">
+                <p className="text-xl sm:text-3xl text-emerald-900 leading-relaxed font-light italic max-w-3xl mx-auto font-display">
+                  "{reviews[activeReviewIdx].comment}"
+                </p>
+                <div className="flex items-center justify-center gap-3 pt-5">
+                  <div className="w-10 h-10 rounded-full bg-emerald-800 text-white font-bold flex items-center justify-center text-xs shadow-sm border border-emerald-600">
                     {reviews[activeReviewIdx].name[0]}
                   </div>
                   <div className="text-left">
-                    <h5 className="text-emerald-900 font-black text-sm leading-none">{reviews[activeReviewIdx].name}</h5>
-                    <span className="text-emerald-500 text-xs mt-1 block">{reviews[activeReviewIdx].role}</span>
+                    <h5 className="text-emerald-950 font-bold text-xs leading-none uppercase tracking-wider">{reviews[activeReviewIdx].name}</h5>
+                    <span className="text-emerald-500 text-[10px] font-bold mt-1.5 block uppercase tracking-widest">{reviews[activeReviewIdx].role}</span>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2.5 mt-10">
             {reviews.map((_, idx) => (
-              <button key={idx} onClick={() => setActiveReviewIdx(idx)} className={`h-2 rounded-full transition-all duration-300 ${activeReviewIdx === idx ? 'bg-emerald-500 w-8 shadow-[0_0_8px_rgba(16,185,129,0.4)]' : 'bg-emerald-200 w-2'}`} />
+              <button 
+                key={idx} 
+                onClick={() => setActiveReviewIdx(idx)} 
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeReviewIdx === idx ? 'bg-emerald-600 w-8' : 'bg-emerald-200/60 w-1.5'}`} 
+              />
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 z-10 relative">
+      {/* CTA SECTION */}
+      <section className="py-24 z-10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-emerald-600 p-8 sm:p-14 rounded-[36px] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-emerald-600/20">
-            <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white/[0.05] to-transparent -z-10" />
+          <div className="bg-[#006536] p-8 sm:p-16 rounded-[36px] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+            <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white/[0.02] to-transparent -z-10" />
             <div className="space-y-4 max-w-2xl text-center md:text-left">
-              <span className="text-emerald-200 font-extrabold uppercase tracking-widest text-xs flex items-center justify-center md:justify-start gap-2">
-                <span className="w-2.5 h-2.5 bg-emerald-300 rounded-full animate-ping" /> Free delivery across India
+              <span className="text-emerald-300 font-bold uppercase tracking-[0.2em] text-[10px] flex items-center justify-center md:justify-start gap-2.5">
+                <span className="w-2.5 h-2.5 bg-emerald-450 rounded-full animate-ping" /> Wholesale &amp; Bulk Orders
               </span>
-              <h3 className="text-2xl sm:text-4xl font-black font-display text-white leading-tight">Bulk Orders &amp; Wholesale Pricing Available</h3>
-              <p className="text-emerald-100/80 text-xs sm:text-sm leading-relaxed">
-                Looking to buy herbal products in bulk? We offer special wholesale pricing for resellers, organic stores, and wellness centers.
+              <h3 className="text-2xl sm:text-4xl font-light font-display text-white leading-tight">Artisanal Partnerships</h3>
+              <p className="text-white/80 text-xs sm:text-sm leading-relaxed font-semibold">
+                Interested in stocking Grandmas Care organic remedies at your boutique or wellness center? We offer tailored shipping pricing models.
               </p>
             </div>
-            <div className="flex-shrink-0 flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-              <Link to="/contact" className="bg-white hover:bg-emerald-50 text-emerald-700 font-black px-8 py-4 rounded-xl text-center transition shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+            <div className="flex-shrink-0 flex flex-col sm:flex-row gap-4 w-full md:w-auto z-10">
+              <Link to="/contact" className="bg-white hover:bg-emerald-50 text-emerald-950 font-bold text-[10px] uppercase tracking-[0.2em] px-8 py-4.5 rounded-xl text-center transition shadow-md hover:-translate-y-0.5">
                 Contact Us
               </Link>
-              <a href="https://api.whatsapp.com/send?phone=+919876543210&text=Hi%2C%20I%20am%20interested%20in%20bulk%20ordering" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-4 rounded-xl text-center transition flex items-center justify-center gap-2 hover:scale-[1.02]">
-                <FaWhatsapp className="text-xl" />
-                <span>WhatsApp for Bulk</span>
+              <a 
+                href="https://api.whatsapp.com/send?phone=+918015080361&text=Hi%2C%20I%20am%20interested%20in%20bulk%20ordering%20Grandmas%20Care%20products%21" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="border border-white/20 hover:border-white hover:bg-white/5 text-white font-bold text-[10px] uppercase tracking-[0.2em] px-8 py-4.5 rounded-xl text-center transition flex items-center justify-center gap-2 hover:-translate-y-0.5 active:scale-98 cursor-pointer"
+              >
+                <FaWhatsapp className="text-base" />
+                <span>WhatsApp Bulk</span>
               </a>
             </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

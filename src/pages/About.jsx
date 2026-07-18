@@ -3,112 +3,114 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function About() {
   const stats = [
-    { label: 'Happy Customers', value: '10,000+' },
-    { label: 'Products Sold', value: '50,000+' },
+    { label: 'Happy Families', value: '10,000+' },
+    { label: 'Remedies Sold', value: '50,000+' },
     { label: 'Village Partners', value: '25+' },
-    { label: 'Years of Tradition', value: '50+' }
+    { label: 'Years of Heritage', value: '50+' }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    { title: "Our Herbal Workshop", desc: "Where traditional Tamil herbal powders are prepared using time-honored methods.", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1000&auto=format&fit=crop&q=80" },
-    { title: "Organic Farm Partners", desc: "Directly sourced from organic farms and village co-operatives across Tamil Nadu.", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1000&auto=format&fit=crop&q=80" },
-    { title: "Quality Packaging", desc: "Fresh packing facility ensuring product purity and long shelf life.", image: "https://images.unsplash.com/photo-1505576399279-0d754e0e4e8e?w=1000&auto=format&fit=crop&q=80" }
+    { title: "Traditional Hand-pounding", desc: "Our powders are dried naturally under sun exposure and milled slowly to preserve vital active compounds.", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1000&auto=format&fit=crop&q=80" },
+    { title: "Direct Farm Sourcing", desc: "Sourcing kasthuri manjal roots and native grains directly from Tamil Nadu organic farm cooperatives.", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1000&auto=format&fit=crop&q=80" },
+    { title: "Small-Batch Packing", desc: "We bundle mixtures immediately after grinding to ensure raw botanical aromas are fully locked.", image: "https://images.unsplash.com/photo-1505576399279-0d754e0e4e8e?w=1000&auto=format&fit=crop&q=80" }
   ];
 
   useEffect(() => {
-    const timer = setInterval(() => setCurrentSlide((prev) => (prev + 1) % slides.length), 5000);
+    const timer = setInterval(() => setCurrentSlide((prev) => (prev + 1) % slides.length), 6000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
   return (
-    <div className="pt-28 pb-20 bg-[#f0fdf4] min-h-screen">
+    <div className="pt-32 pb-24 bg-[#f9fbf9] min-h-screen font-body">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-emerald-500 font-bold uppercase tracking-wider text-xs">Our Story</span>
-          <h1 className="text-3xl sm:text-5xl font-black font-display text-emerald-900 mt-2 mb-4">About Tamila Natural</h1>
-          <p className="text-emerald-700/60 text-sm">Preserving traditional Tamil herbal wisdom and bringing it to modern homes. 100% natural, chemical-free wellness products since 2020.</p>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="text-emerald-500 font-extrabold uppercase tracking-[0.25em] text-[10px]">Our Heritage</span>
+          <h1 className="text-3xl sm:text-5xl font-light font-display text-emerald-955 mt-1">About Grandmas Care</h1>
+          <div className="h-[1px] w-12 bg-emerald-600/35 mx-auto mt-3.5" />
+          <p className="text-emerald-955/50 text-xs sm:text-sm mt-4 font-medium leading-relaxed">Preserving authentic Tamil herbal wellness. 100% raw, chemical-free wellness recipes blended with grandmothers care since 2020.</p>
         </div>
 
-        {/* Brand Story */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+        {/* Story Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           <div className="space-y-6">
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-emerald-900">Rooted in Tamil Nadu's Herbal Heritage</h2>
-            <p className="text-emerald-700/70 text-sm leading-relaxed">
-              Tamila Natural was born from a deep passion for traditional Tamil herbal remedies. We noticed that authentic herbal products were becoming harder to find in a market flooded with chemical-laden alternatives.
+            <h2 className="text-2xl sm:text-4xl font-light font-display text-emerald-955 leading-[1.1]">Rooted in Tamil Nadu's Heritage</h2>
+            <p className="text-xs sm:text-sm text-emerald-955/60 leading-relaxed font-semibold">
+              Grandmas Care was established to package authentic home wellness powders. In a market flooded with chemically formulated cosmetic substitutes, we choose to protect raw, traditional herbal remedies.
             </p>
-            <p className="text-emerald-700/70 text-sm leading-relaxed">
-              Today, we partner with 25+ village artisans and organic farmers across Tamil Nadu to bring you the purest herbal powders, health mixes, and wellness products — prepared the way our grandmothers intended.
+            <p className="text-xs sm:text-sm text-emerald-955/60 leading-relaxed font-semibold">
+              We work closely with rural agricultural farmers and women cooperatives in Tamil villages. By sourcing raw ingredients directly, we ensure fair compensation for our makers and pure, therapeutic quality for our families.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4 border-t border-emerald-100">
-              {['100% Chemical Free', 'Traditional Recipes', 'Farm Fresh'].map((item, i) => (
+            
+            <div className="flex flex-wrap gap-4 pt-6 border-t border-emerald-500/5">
+              {['100% Raw Ingredients', 'Zero Processing Fillers', 'Empowering Village Co-ops'].map((item, i) => (
                 <div key={i} className="flex items-center gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
-                  <span className="text-xs text-emerald-800 font-bold">{item}</span>
+                  <div className="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-650 flex items-center justify-center font-black text-[9px]">✓</div>
+                  <span className="text-[10px] text-emerald-950 font-bold uppercase tracking-wider">{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="glass-panel p-4 rounded-3xl relative overflow-hidden group shadow-xl h-[350px]">
+          {/* Floating Slideshow Panel */}
+          <div className="glass-panel p-4 rounded-[32px] relative overflow-hidden group shadow-[0_15px_40px_rgba(11,34,22,0.02)] h-[380px] border border-emerald-500/5 bg-white">
             <AnimatePresence mode="wait">
               <motion.div key={currentSlide} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 w-full h-full">
-                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${slides[currentSlide].image})`, filter: 'brightness(0.5)' }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 z-10 text-left">
-                  <span className="text-[10px] text-emerald-300 font-bold uppercase tracking-wider">Our Facility</span>
-                  <h4 className="text-white font-bold text-lg mt-1">{slides[currentSlide].title}</h4>
-                  <p className="text-emerald-100/80 text-xs mt-1">{slides[currentSlide].desc}</p>
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${slides[currentSlide].image})`, filter: 'brightness(0.35) contrast(1.05)' }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/20 to-transparent" />
+                <div className="absolute bottom-8 left-8 right-8 z-10 text-left">
+                  <span className="text-[8px] text-emerald-400 font-extrabold uppercase tracking-widest">Our Operations</span>
+                  <h4 className="text-white font-medium text-lg sm:text-xl mt-1 leading-snug font-display">{slides[currentSlide].title}</h4>
+                  <p className="text-emerald-100/70 text-xs sm:text-sm mt-1.5 leading-relaxed font-semibold">{slides[currentSlide].desc}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
-            <div className="absolute right-6 top-6 z-20 flex gap-2">
-              {slides.map((_, idx) => (
-                <button key={idx} onClick={() => setCurrentSlide(idx)} className={`w-2 h-2 rounded-full transition ${currentSlide === idx ? 'bg-emerald-400 w-4' : 'bg-white/40'}`} />
-              ))}
-            </div>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {stats.map((stat, idx) => (
-            <div key={idx} className="glass-panel p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:border-emerald-300 transition">
-              <span className="text-2xl sm:text-3xl font-black text-emerald-700 font-display">{stat.value}</span>
-              <span className="text-emerald-500 text-[10px] sm:text-xs uppercase font-bold tracking-wider mt-2">{stat.label}</span>
+            <div key={idx} className="glass-panel p-6 sm:p-8 rounded-2xl flex flex-col items-center text-center shadow-sm border border-emerald-500/5 hover:bg-white duration-300">
+              <span className="text-3xl sm:text-4xl font-normal text-emerald-800 font-display">{stat.value}</span>
+              <span className="text-emerald-500 text-[9px] uppercase font-bold tracking-widest mt-2">{stat.label}</span>
             </div>
           ))}
         </div>
 
-        {/* Mission & Vision */}
+        {/* Mission & Vision cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="glass-panel p-8 rounded-3xl relative overflow-hidden">
-            <div className="absolute -right-6 -top-6 w-20 h-20 bg-emerald-400/10 rounded-full blur-xl" />
+          
+          <div className="premium-card p-8 rounded-[32px] relative overflow-hidden bg-white shadow-[0_12px_30px_rgba(11,34,22,0.02)]">
+            <div className="absolute -right-6 -top-6 w-20 h-20 bg-emerald-500/5 rounded-full blur-xl" />
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">🌿</div>
-              <div className="space-y-2">
-                <h3 className="text-emerald-900 font-bold text-lg font-display">Our Mission</h3>
-                <p className="text-emerald-600/70 text-xs leading-relaxed">
-                  To make traditional Tamil herbal remedies accessible to every household. We are committed to preserving village recipes, supporting local farmers, and delivering 100% natural wellness products.
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl flex-shrink-0">🌿</div>
+              <div className="space-y-2.5">
+                <h3 className="text-emerald-955 font-normal text-lg font-display leading-none">Our Mission</h3>
+                <p className="text-emerald-955/50 text-xs sm:text-sm leading-relaxed font-semibold">
+                  To protect standard traditional home care formulations and make them accessible globally. We focus on ethical, small-batch sourcing that supports native farming and healthy living.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="glass-panel p-8 rounded-3xl relative overflow-hidden">
-            <div className="absolute -right-6 -top-6 w-20 h-20 bg-emerald-400/10 rounded-full blur-xl" />
+          <div className="premium-card p-8 rounded-[32px] relative overflow-hidden bg-white shadow-[0_12px_30px_rgba(11,34,22,0.02)]">
+            <div className="absolute -right-6 -top-6 w-20 h-20 bg-emerald-500/5 rounded-full blur-xl" />
             <div className="flex gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">👁️</div>
-              <div className="space-y-2">
-                <h3 className="text-emerald-900 font-bold text-lg font-display">Our Vision</h3>
-                <p className="text-emerald-600/70 text-xs leading-relaxed">
-                  To become India's most trusted herbal wellness brand, known for authentic Tamil traditional remedies, transparent sourcing, and the highest quality natural ingredients.
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/5 border border-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl flex-shrink-0">👁️</div>
+              <div className="space-y-2.5">
+                <h3 className="text-emerald-955 font-normal text-lg font-display leading-none">Our Vision</h3>
+                <p className="text-emerald-955/50 text-xs sm:text-sm leading-relaxed font-semibold">
+                  To establish Grandmas Care as a global benchmark for raw botanical wellness. We aim to revive natural beauty rituals by preserving the raw healing energy of South Indian herbs.
                 </p>
               </div>
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   );

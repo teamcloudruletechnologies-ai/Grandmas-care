@@ -15,103 +15,135 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <div className="pt-32 pb-20 text-center min-h-screen bg-[#f0fdf4] flex flex-col items-center justify-center">
-        <h2 className="text-2xl font-bold text-emerald-900 mb-2 font-display">Product Not Found</h2>
-        <p className="text-emerald-600/60 text-sm mb-6">The product you are looking for might be sold out.</p>
-        <Link to="/shop" className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl transition">Return to Shop</Link>
+      <div className="pt-32 pb-20 text-center min-h-screen bg-[#f9fbf9] flex flex-col items-center justify-center font-body">
+        <h2 className="text-2xl font-light text-emerald-950 mb-2 font-display">Remedy Not Found</h2>
+        <p className="text-emerald-955/50 text-xs sm:text-sm mb-6">The remedy you are looking for might be out of stock.</p>
+        <Link to="/shop" className="bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-[10px] uppercase tracking-[0.2em] px-7 py-4.5 rounded-xl shadow-sm transition">Return to Catalog</Link>
       </div>
     );
   }
 
   const handleWhatsApp = () => {
-    const msg = `Hi Tamila Natural! I want to order:\n\n*${product.name}* (${product.tamilName})\nWeight: ${product.weight}\nPrice: ₹${product.price}\n\nPlease confirm availability. Thanks!`;
-    window.open(`https://api.whatsapp.com/send?phone=+919876543210&text=${encodeURIComponent(msg)}`, '_blank');
+    const msg = `Hi Grandmas Care! I want to order:\n\n*${product.name}* (${product.tamilName})\nWeight: ${product.weight}\nPrice: ₹${product.price}\n\nPlease confirm availability. Thanks!`;
+    window.open(`https://api.whatsapp.com/send?phone=+918015080361&text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
-    <div className="pt-28 pb-20 bg-[#f0fdf4] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-600 hover:text-emerald-800 mb-8 transition">
+    <div className="pt-32 pb-24 bg-[#f9fbf9] min-h-screen relative overflow-hidden font-body">
+      {/* Background decorations */}
+      <div className="glow-blob bg-emerald-500/5 w-[500px] h-[500px] -top-40 -left-40 animate-pulse-slow" />
+      <div className="glow-blob bg-emerald-500/5 w-[500px] h-[500px] bottom-10 -right-40 animate-pulse-slow" style={{ animationDelay: '3s' }} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Back button */}
+        <button 
+          onClick={() => navigate(-1)} 
+          className="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-700 hover:text-emerald-950 mb-8 uppercase tracking-[0.2em] transition-colors duration-300 cursor-pointer"
+        >
           <FiArrowLeft /><span>Back to Catalog</span>
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Image */}
-          <div className="glass-panel p-8 rounded-3xl flex items-center justify-center bg-emerald-50/50 border border-emerald-100 shadow-xl relative overflow-hidden group min-h-[400px] lg:min-h-[500px]">
-            <div className="absolute w-[300px] h-[300px] bg-emerald-400/5 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-            <motion.img initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} src={product.image} alt={product.name} className="max-h-[350px] lg:max-h-[450px] object-contain group-hover:scale-105 transition-transform duration-500" />
+          
+          {/* Left Column: Image Showcase */}
+          <div className="premium-card p-8 rounded-[32px] flex items-center justify-center bg-white border border-emerald-500/5 shadow-[0_12px_40px_rgba(11,34,22,0.02)] relative overflow-hidden min-h-[380px] lg:min-h-[480px]">
+            <div className="absolute w-[260px] h-[260px] bg-emerald-500/5 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <motion.img 
+              initial={{ opacity: 0, scale: 0.98 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              transition={{ duration: 0.4 }} 
+              src={product.image} 
+              alt={product.name} 
+              className="max-h-[350px] lg:max-h-[420px] object-contain rounded-2xl z-10 transition-transform duration-550 hover:scale-[1.01]" 
+            />
           </div>
 
-          {/* Info */}
-          <div className="space-y-6">
+          {/* Right Column: Information details */}
+          <div className="space-y-7">
+            
+            {/* Header info */}
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded">{product.category}</span>
-                {product.tag && <span className="bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded border border-emerald-200">{product.tag}</span>}
+              <div className="flex items-center gap-2.5 mb-3">
+                <span className="bg-emerald-500/5 text-emerald-800 border border-emerald-500/10 text-[8px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-lg">{product.category}</span>
+                {product.tag && <span className="bg-amber-500 text-white text-[8px] font-bold uppercase tracking-[0.2em] px-3.5 py-1.5 rounded-lg shadow-sm">{product.tag}</span>}
               </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold font-display text-emerald-900 leading-tight">{product.name}</h1>
-              <p className="text-sm text-emerald-500 mt-1 font-bold">{product.tamilName}</p>
-              <div className="flex items-center gap-2 mt-3">
+              <h1 className="text-3xl sm:text-4xl lg:text-4.5xl font-light font-display text-emerald-955 leading-[1.1]">{product.name}</h1>
+              <p className="text-xs text-emerald-600 font-bold uppercase tracking-[0.25em] mt-2">{product.tamilName}</p>
+              
+              <div className="flex items-center gap-2 mt-4">
                 <div className="flex text-amber-500">
-                  {[...Array(5)].map((_, i) => <FiStar key={i} className={`text-sm ${i < Math.floor(product.rating) ? 'fill-amber-500' : 'text-emerald-200'}`} />)}
+                  {[...Array(5)].map((_, i) => <FiStar key={i} className={`text-sm ${i < Math.floor(product.rating) ? 'fill-amber-500' : 'text-emerald-250'}`} />)}
                 </div>
-                <span className="text-xs text-emerald-600"><strong>{product.rating}</strong> ({product.reviewsCount} orders)</span>
+                <span className="text-xs text-emerald-955/50 font-semibold"><strong>{product.rating}</strong> ({product.reviewsCount} orders)</span>
               </div>
             </div>
 
-            <div className="border-y border-emerald-100 py-4 flex items-baseline gap-4">
-              <span className="text-3xl font-black text-emerald-700">₹{product.price}</span>
-              {product.originalPrice && <span className="text-lg text-emerald-400 line-through font-semibold">₹{product.originalPrice}</span>}
-              <span className="text-emerald-600 text-xs font-bold bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded ml-2">In Stock</span>
+            {/* Pricing details */}
+            <div className="border-y border-emerald-500/5 py-5 flex items-baseline gap-4">
+              <span className="text-3xl font-normal text-emerald-950 font-display">₹{product.price}</span>
+              {product.originalPrice && <span className="text-lg text-emerald-950/30 line-through font-bold">₹{product.originalPrice}</span>}
+              <span className="text-emerald-700 text-[9px] font-bold bg-emerald-50 border border-emerald-500/10 px-3.5 py-1.5 rounded-lg uppercase tracking-[0.18em] ml-3">In Stock</span>
             </div>
 
-            <p className="text-sm text-emerald-700/80 leading-relaxed">{product.description}</p>
+            {/* Description */}
+            <p className="text-xs sm:text-sm text-emerald-955/65 leading-relaxed font-semibold">{product.description}</p>
 
             {/* Benefits */}
-            <div>
-              <h4 className="text-xs font-bold text-emerald-800 uppercase tracking-widest mb-3">Key Benefits</h4>
+            <div className="space-y-3">
+              <h4 className="text-[10px] font-bold text-emerald-950 uppercase tracking-[0.2em]">Key Benefits</h4>
               <div className="flex flex-wrap gap-2">
                 {product.benefits.map((b, i) => (
-                  <span key={i} className="flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full">
-                    <FiCheck className="text-emerald-500" />{b}
+                  <span key={i} className="flex items-center gap-1.5 text-[9px] font-bold text-emerald-800 bg-white border border-emerald-500/10 px-4 py-2 rounded-full shadow-sm uppercase tracking-wider">
+                    <FiCheck className="text-emerald-500 text-sm" />{b}
                   </span>
                 ))}
               </div>
             </div>
 
             {/* Ingredients */}
-            <div>
-              <h4 className="text-xs font-bold text-emerald-800 uppercase tracking-widest mb-3">Ingredients</h4>
-              <p className="text-xs text-emerald-600 leading-relaxed">{product.ingredients.join(' • ')}</p>
+            <div className="space-y-2">
+              <h4 className="text-[10px] font-bold text-emerald-955 uppercase tracking-[0.2em]">Ingredients</h4>
+              <p className="text-xs text-emerald-700 font-bold uppercase tracking-[0.15em] leading-relaxed">{product.ingredients.join(' • ')}</p>
             </div>
 
             {/* Weight */}
-            <div>
-              <h4 className="text-xs font-bold text-emerald-800 uppercase tracking-widest mb-3">Weight</h4>
-              <span className="text-sm text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 px-4 py-2 rounded-xl">{product.weight}</span>
+            <div className="space-y-2">
+              <h4 className="text-[10px] font-bold text-emerald-950 uppercase tracking-[0.2em]">Net Weight</h4>
+              <span className="inline-block text-[11px] text-emerald-955 font-bold uppercase tracking-wider bg-white border border-emerald-500/10 px-4 py-2.5 rounded-xl shadow-sm">{product.weight}</span>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-emerald-100">
-              <button onClick={handleWhatsApp} className="flex-grow bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 px-6 rounded-xl flex items-center justify-center gap-2 transition hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-emerald-500/20">
-                <FaWhatsapp className="text-xl" />Order via WhatsApp
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-5 border-t border-emerald-500/5">
+              <button 
+                onClick={handleWhatsApp} 
+                className="flex-grow bg-emerald-850 hover:bg-emerald-900 text-white font-bold text-[10px] uppercase tracking-[0.2em] py-4.5 px-6 rounded-xl flex items-center justify-center gap-2.5 transition shadow-sm hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+              >
+                <FaWhatsapp className="text-lg" />
+                <span>Order via WhatsApp</span>
               </button>
-              <button onClick={() => addToCart(product)} className="glass-panel border-emerald-200 text-emerald-700 hover:border-emerald-400 font-semibold py-4 px-6 rounded-xl transition flex items-center justify-center gap-2">
+              <button 
+                onClick={() => addToCart(product)} 
+                className="glass-panel text-emerald-900 border-emerald-500/10 hover:border-emerald-500/20 font-bold text-[10px] uppercase tracking-[0.2em] py-4.5 px-6 rounded-xl transition flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] cursor-pointer bg-white/40"
+              >
                 Add to Cart
               </button>
             </div>
 
-            {/* Assurances */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-emerald-100 text-center">
-              {['100% Natural', 'Chemical Free', 'Fast Delivery'].map((label, i) => (
+            {/* Guarantee metrics */}
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-emerald-500/5 text-center">
+              {['100% Organic', 'Zero Toxins', 'Artisanal Milled'].map((label, i) => (
                 <div key={i} className="flex flex-col items-center">
-                  <FiCheck className="text-emerald-500 text-xl mb-1.5" />
-                  <span className="text-[10px] text-emerald-500 font-bold uppercase">{label}</span>
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/5 flex items-center justify-center text-emerald-600 text-sm mb-1.5">✓</div>
+                  <span className="text-[8px] text-emerald-950 font-bold uppercase tracking-[0.18em]">{label}</span>
                 </div>
               ))}
             </div>
+
           </div>
+
         </div>
+
       </div>
     </div>
   );

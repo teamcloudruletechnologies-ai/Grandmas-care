@@ -18,10 +18,24 @@ export const InquiryProvider = ({ children }) => {
   const addToCart = (item) => {
     setCartItems((prevItems) => {
       const exists = prevItems.find((i) => i.id === item.id);
-      if (exists) return prevItems;
-      return [...prevItems, item];
+      if (exists) {
+        return prevItems.map((i) => i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i);
+      }
+      return [...prevItems, { ...item, quantity: 1 }];
     });
     setIsCartOpen(true);
+  };
+
+  const updateQuantity = (itemId, amount) => {
+    setCartItems((prevItems) => 
+      prevItems.map((i) => {
+        if (i.id === itemId) {
+          const newQty = (i.quantity || 1) + amount;
+          return newQty > 0 ? { ...i, quantity: newQty } : i;
+        }
+        return i;
+      })
+    );
   };
 
   const removeFromCart = (itemId) => {
@@ -32,22 +46,25 @@ export const InquiryProvider = ({ children }) => {
     setCartItems([]);
   };
 
-  const sendWhatsAppInquiry = (customMsg = "") => {
-    const phoneNumber = "+919876543210";
-    if (cartItems.length === 0 && !customMsg) return;
+  const sendWhatsAppInquiry = () => {
+    const phoneNumber = "+918015080361";
+    if (cartItems.length === 0) return;
 
-    let message = `Hi Tamila Natural! I would like to order the following products:\n\n`;
+    let message = `Hi Grandmas Care! I would like to order the following products:\n\n`;
+    let subtotal = 0;
 
     cartItems.forEach((item, index) => {
+      const qty = item.quantity || 1;
+      const totalItemPrice = item.price * qty;
+      subtotal += totalItemPrice;
+      
       message += `${index + 1}. *${item.name}* (${item.tamilName || item.category})\n`;
+      message += `   - Quantity: ${qty}\n`;
       message += `   - Weight: ${item.weight || 'N/A'}\n`;
-      message += `   - Price: ₹${item.price}\n\n`;
+      message += `   - Price: ₹${item.price} each (Total: ₹${totalItemPrice})\n\n`;
     });
 
-    if (customMsg) {
-      message += `Note: ${customMsg}\n\n`;
-    }
-
+    message += `*Total Order Value: ₹${subtotal}*\n\n`;
     message += `Please confirm availability and delivery details. Thank you!`;
 
     const encodedText = encodeURIComponent(message);
@@ -56,7 +73,7 @@ export const InquiryProvider = ({ children }) => {
   };
 
   return (
-    <InquiryContext.Provider value={{ cartItems, isCartOpen, setIsCartOpen, addToCart, removeFromCart, clearCart, sendWhatsAppInquiry }}>
+    <InquiryContext.Provider value={{ cartItems, isCartOpen, setIsCartOpen, addToCart, updateQuantity, removeFromCart, clearCart, sendWhatsAppInquiry }}>
       {children}
     </InquiryContext.Provider>
   );
