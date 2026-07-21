@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import banner1 from '../../assets/Banner/Kadalai Maavu Banner.png';
@@ -16,26 +16,37 @@ export default function BannerCarousel() {
   const goPrev = () => setCurrent((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
   const goNext = () => setCurrent((prev) => (prev + 1) % bannerImages.length);
 
+  // Preload all banner images immediately on mount to prevent network delay or blank image flashes
   useEffect(() => {
-    const interval = setInterval(goNext, 3000);
+    bannerImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(goNext, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative w-full z-10 pt-[72px] md:pt-[90px] bg-white">
-      <div className="relative w-full overflow-hidden">
-        <AnimatePresence mode="wait">
+      <div className="relative w-full aspect-[1200/687] overflow-hidden bg-emerald-50/20">
+        {bannerImages.map((src, idx) => (
           <motion.img
-            key={current}
-            src={bannerImages[current]}
-            alt={`Banner ${current + 1}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="w-full h-auto block"
+            key={idx}
+            src={src}
+            alt={`Banner ${idx + 1}`}
+            initial={false}
+            animate={{ opacity: idx === current ? 1 : 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            fetchpriority={idx === 0 ? 'high' : 'auto'}
+            decoding="async"
+            className={`absolute inset-0 w-full h-full object-cover ${
+              idx === current ? 'pointer-events-auto z-10' : 'pointer-events-none z-0'
+            }`}
           />
-        </AnimatePresence>
+        ))}
 
         {/* Left Arrow */}
         <button
