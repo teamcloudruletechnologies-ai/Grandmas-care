@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import banner1 from '../../assets/banner/Kadalai Maavu Banner.png';
-import banner2 from '../../assets/banner/Kasthuri Manjal Banner.png';
-import banner3 from '../../assets/banner/Nalangu Maavu Banner.png';
-import banner4 from '../../assets/banner/Payatha Maavu Banner.png';
-import banner5 from '../../assets/banner/Pink Facepack Banner.png';
+import banner1 from '../../assets/Banner/Kadalai Maavu Banner.png';
+import banner2 from '../../assets/Banner/Kasthuri Manjal Banner.png';
+import banner3 from '../../assets/Banner/Nalangu Maavu Banner.png';
+import banner4 from '../../assets/Banner/Payatha Maavu Banner.png';
+import banner5 from '../../assets/Banner/Pink Facepack Banner.png';
 
 const bannerImages = [banner1, banner2, banner3, banner4, banner5];
 
