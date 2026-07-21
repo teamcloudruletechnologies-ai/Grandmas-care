@@ -53,7 +53,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-[11px] font-medium font-body uppercase tracking-[0.15em] transition-all duration-300 relative py-1.5 hover:text-[#D4AF37] ${isActive(link.path) ? 'text-white' : 'text-white/80'}`}
+                className={`text-sm font-medium font-body uppercase tracking-[0.15em] transition-all duration-300 relative py-1.5 hover:text-[#D4AF37] ${isActive(link.path) ? 'text-white' : 'text-white/80'}`}
               >
                 {link.name}
                 {isActive(link.path) && (

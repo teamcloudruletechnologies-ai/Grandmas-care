@@ -1,15 +1,15 @@
-import herbalBathPowder from '../assets/products/herbal-bath-powder.jpg';
+import herbalBathPowder from '../assets/products/green-gram-flour.jpg';
 import wildTurmericPowder from '../assets/products/wild-turmeric-powder.jpg';
 import gramFlour from '../assets/products/gram-flour.jpg';
 import greenGramFlour from '../assets/products/green-gram-flour.jpg';
 import pinkFacePack from '../assets/products/pink-face-pack.jpg';
 import ayurglowHairPack from '../assets/products/ayurglow-hair-pack.jpg';
-import kerelaAyurvedicHairOil from '../assets/products/kerela-ayurvedic-hair-oil.jpg';
+import kerelaAyurvedicHairOil from '../assets/products/ayurglow-hair-pack.jpg';
 import slimFitWeightloss from '../assets/products/slim-fit-weightloss.jpg';
 import kambuMaavu from '../assets/products/kambu-maavu.jpg';
 import blackRiceKanji from '../assets/products/black-rice-kanji.jpg';
 import milletHealthMix from '../assets/products/millet-health-mix.jpg';
-import abcMalt from '../assets/products/abc-malt.png';
+import abcMalt from '../assets/products/millet-health-mix.jpg';
 
 export const herbalCategories = [
   'All',

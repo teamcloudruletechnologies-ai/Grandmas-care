@@ -1,0 +1,78 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+
+import banner1 from '../../assets/banner/Kadalai Maavu Banner.png';
+import banner2 from '../../assets/banner/Kasthuri Manjal Banner.png';
+import banner3 from '../../assets/banner/Nalangu Maavu Banner.png';
+import banner4 from '../../assets/banner/Payatha Maavu Banner.png';
+import banner5 from '../../assets/banner/Pink Facepack Banner.png';
+
+const bannerImages = [banner1, banner2, banner3, banner4, banner5];
+
+export default function BannerCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  const goPrev = () => setCurrent((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
+  const goNext = () => setCurrent((prev) => (prev + 1) % bannerImages.length);
+
+  useEffect(() => {
+    const interval = setInterval(goNext, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative w-full z-10 pt-[72px] md:pt-[90px] bg-white">
+      <div className="relative w-full overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={bannerImages[current]}
+            alt={`Banner ${current + 1}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="w-full h-auto block"
+          />
+        </AnimatePresence>
+
+        {/* Left Arrow */}
+        <button
+          onClick={goPrev}
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/25 hover:bg-black/45 backdrop-blur-sm text-white rounded-full p-1.5 sm:p-2.5 transition-all duration-200 hover:scale-110 border border-white/20"
+          aria-label="Previous banner"
+        >
+          <FiChevronLeft size={18} className="sm:hidden" />
+          <FiChevronLeft size={22} className="hidden sm:block" />
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={goNext}
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/25 hover:bg-black/45 backdrop-blur-sm text-white rounded-full p-1.5 sm:p-2.5 transition-all duration-200 hover:scale-110 border border-white/20"
+          aria-label="Next banner"
+        >
+          <FiChevronRight size={18} className="sm:hidden" />
+          <FiChevronRight size={22} className="hidden sm:block" />
+        </button>
+
+        {/* Dot Indicators */}
+        <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2">
+          {bannerImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? 'w-5 sm:w-6 h-2 sm:h-2.5 bg-white'
+                  : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/50 hover:bg-white/80'
+              }`}
+              aria-label={`Go to banner ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
