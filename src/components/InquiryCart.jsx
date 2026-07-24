@@ -141,7 +141,7 @@ export default function InquiryCart() {
                   {/* Subtotal display */}
                   <div className="flex items-center justify-between text-xs font-bold text-emerald-955 mb-2">
                     <span className="uppercase tracking-wider text-[10px] text-emerald-900/60 font-semibold">Subtotal:</span>
-                    <span className="text-lg font-black text-emerald-955 font-display">₹{subtotal}</span>
+                    <span className="text-xl font-bold text-emerald-955 font-body">₹{subtotal}</span>
                   </div>
 
                   <div className="flex items-center justify-between text-[11px] font-bold text-emerald-955/50 mb-1">
