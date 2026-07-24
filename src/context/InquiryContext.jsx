@@ -15,6 +15,29 @@ export const InquiryProvider = ({ children }) => {
     localStorage.setItem('tamila_natural_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // Handle mobile hardware back button / swipe back when cart is open
+  useEffect(() => {
+    if (isCartOpen) {
+      window.history.pushState({ cartOpen: true }, '');
+
+      const handlePopState = () => {
+        setIsCartOpen(false);
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [isCartOpen]);
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+    if (window.history.state?.cartOpen) {
+      window.history.back();
+    }
+  };
+
   const addToCart = (item) => {
     setCartItems((prevItems) => {
       const exists = prevItems.find((i) => i.id === item.id);
@@ -73,7 +96,7 @@ export const InquiryProvider = ({ children }) => {
   };
 
   return (
-    <InquiryContext.Provider value={{ cartItems, isCartOpen, setIsCartOpen, addToCart, updateQuantity, removeFromCart, clearCart, sendWhatsAppInquiry }}>
+    <InquiryContext.Provider value={{ cartItems, isCartOpen, setIsCartOpen, closeCart, addToCart, updateQuantity, removeFromCart, clearCart, sendWhatsAppInquiry }}>
       {children}
     </InquiryContext.Provider>
   );

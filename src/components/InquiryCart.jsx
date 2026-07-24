@@ -5,7 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default function InquiryCart() {
-  const { cartItems, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, clearCart, sendWhatsAppInquiry } = useInquiry();
+  const { cartItems, isCartOpen, closeCart, updateQuantity, removeFromCart, clearCart, sendWhatsAppInquiry } = useInquiry();
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0);
 
@@ -23,7 +23,7 @@ export default function InquiryCart() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 0.4 }} 
             exit={{ opacity: 0 }} 
-            onClick={() => setIsCartOpen(false)} 
+            onClick={closeCart} 
             className="fixed inset-0 bg-[#022c22]/15 z-50 backdrop-blur-[3px] cursor-pointer" 
           />
 
@@ -49,7 +49,7 @@ export default function InquiryCart() {
                   <span className="bg-emerald-800 text-white font-bold text-[9px] px-2.5 py-1 rounded-full ml-1.5 shadow-sm">{cartItems.reduce((acc, i) => acc + (i.quantity || 1), 0)}</span>
                 </div>
                 <button 
-                  onClick={() => setIsCartOpen(false)} 
+                  onClick={closeCart} 
                   className="p-2.5 text-emerald-950/40 hover:text-emerald-950 rounded-xl hover:bg-emerald-500/5 border border-transparent hover:border-emerald-500/10 transition cursor-pointer"
                 >
                   <FiX className="text-lg" />
@@ -64,7 +64,7 @@ export default function InquiryCart() {
                     <p className="text-xs font-bold text-emerald-955/40 mb-6 uppercase tracking-wider">Your cart is currently empty</p>
                     <Link 
                       to="/shop" 
-                      onClick={() => setIsCartOpen(false)} 
+                      onClick={closeCart} 
                       className="bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-[10px] uppercase tracking-[0.2em] px-7 py-4.5 rounded-xl shadow-sm hover:-translate-y-0.5 transition duration-300 cursor-pointer"
                     >
                       Browse Remedies
