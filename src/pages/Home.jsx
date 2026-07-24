@@ -1,8 +1,7 @@
 import BannerCarousel from '../components/home/BannerCarousel';
 import FeaturedProducts from '../components/home/FeaturedProducts';
 import WhyChooseUs from '../components/home/WhyChooseUs';
-import Testimonials from '../components/home/Testimonials';
-import CTASection from '../components/home/CTASection';
+import InstagramJourney from '../components/home/InstagramJourney';
 
 export default function Home() {
   return (
@@ -16,8 +15,7 @@ export default function Home() {
       <BannerCarousel />
       <FeaturedProducts />
       <WhyChooseUs />
-      <Testimonials />
-      <CTASection />
+      <InstagramJourney />
 
     </div>
   );

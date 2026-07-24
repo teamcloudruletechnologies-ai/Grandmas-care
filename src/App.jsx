@@ -9,7 +9,6 @@ import InquiryCart from './components/InquiryCart';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
-import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
@@ -29,7 +28,6 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/shop" element={<Shop />} />
               <Route path="/product/:productId" element={<ProductDetails />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>

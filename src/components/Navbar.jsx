@@ -23,7 +23,6 @@ export default function Navbar() {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
-    { name: 'Wellness', path: '/services' },
     { name: 'About Us', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -35,15 +34,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8 w-full">
         <div className="flex items-center justify-between">
 
-          {/* Luxury Branding (Cormorant Garamond, Gold Accent, Mobile-Optimized) */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3.5 group">
+          {/* Luxury Branding (Cinzel 600, White & Gold #D4AF37, Larger Prominent Sizing) */}
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 group flex-shrink-0">
             <img 
               src={logoImg} 
               alt="Grandmas Care Logo" 
-              className="w-8 h-8 sm:w-11 sm:h-11 object-cover rounded-full border border-white/20 shadow-[0_2px_10px_rgba(0,0,0,0.1)] transition-transform duration-300 group-hover:scale-105" 
+              className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 object-cover rounded-full border border-white/25 shadow-[0_2px_10px_rgba(0,0,0,0.15)] transition-transform duration-300 group-hover:scale-105 flex-shrink-0" 
             />
-            <span className="text-sm xs:text-base sm:text-lg md:text-2xl font-bold font-display tracking-[0.04em] sm:tracking-[0.08em] text-white flex items-center leading-none whitespace-nowrap">
-              GRANDMAS<span className="text-[#D4AF37] font-extrabold ml-1 sm:ml-1.5">CARE</span>
+            <span className="font-logo font-semibold text-lg sm:text-[28px] md:text-[34px] tracking-[0.05em] sm:tracking-[1.2px] leading-none text-white flex items-center whitespace-nowrap">
+              GRANDMAS<span className="text-[#D4AF37] ml-1 sm:ml-1.5">CARE</span>
             </span>
           </Link>
 
@@ -68,7 +67,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Actions (Glassmorphism WhatsApp & Gold Cart Badge) */}
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-5 flex-shrink-0">
             <a
               href="https://api.whatsapp.com/send?phone=+918015080361&text=Hi%20Grandmas%20Care%2C%20I%20have%2520an%2520inquiry%21"
               target="_blank" rel="noopener noreferrer"
@@ -91,11 +90,11 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Actions (Cart & Hamburger Menu) */}
-          <div className="flex items-center gap-2.5 md:hidden">
+          {/* Mobile Actions (Cart & Hamburger Menu - Centered & Properly Spaced) */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 md:hidden">
             <button 
               onClick={() => setIsCartOpen(true)} 
-              className="relative p-2.5 bg-white/10 hover:bg-white/20 border border-white/15 rounded-full text-white transition-all duration-300 shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95"
+              className="relative p-2 sm:p-2.5 bg-white/10 hover:bg-white/20 border border-white/15 rounded-full text-white transition-all duration-300 shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95"
             >
               <FiShoppingCart className="text-sm" />
               {cartItems.length > 0 && (
@@ -106,7 +105,7 @@ export default function Navbar() {
             </button>
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 text-white hover:bg-white/10 rounded-full transition flex items-center justify-center cursor-pointer"
+              className="p-1.5 text-white hover:bg-white/10 rounded-full transition flex items-center justify-center cursor-pointer"
             >
               {isOpen ? <FiX className="text-xl" /> : <FiMenu className="text-xl" />}
             </button>

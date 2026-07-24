@@ -40,7 +40,7 @@ export default function BannerCarousel() {
             initial={false}
             animate={{ opacity: idx === current ? 1 : 0 }}
             transition={{ duration: 0.6, ease: 'easeInOut' }}
-            fetchpriority={idx === 0 ? 'high' : 'auto'}
+            fetchPriority={idx === 0 ? 'high' : 'auto'}
             decoding="async"
             className={`absolute inset-0 w-full h-full object-cover ${
               idx === current ? 'pointer-events-auto z-10' : 'pointer-events-none z-0'

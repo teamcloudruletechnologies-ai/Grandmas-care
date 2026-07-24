@@ -1,67 +1,67 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiStar } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 const benefitStatements = {
-  'herbal-bath-powder': 'Traditional herbal bath powder for naturally radiant skin.',
+  'herbal-bath-powder': "Traditional Tamil herbal bath powder specially formulated for women.",
   'wild-turmeric-powder': 'Pure wild turmeric for fading blemishes and evening skin tone.',
   'gram-flour': 'Stone-ground organic gram flour for gentle skin and hair cleansing.',
   'green-gram-flour': 'Nourishing green gram wash for sensitive skin nourishment.',
   'pink-face-pack': 'Rose and clay blend for deep pore tightening and glow.',
-  'ayurglow-hair-pack': 'Nourishing herbal hair pack to strengthen roots and prevent fall.',
+  'multani-mitti-face-pack': 'Pure Fuller\'s Earth face pack for oil control and clearing pores.',
   'kerela-ayurvedic-hair-oil': 'Traditional ayurvedic infusion for healthy hair growth.',
+  'ayurglow-hair-pack': 'Nourishing herbal hair pack to strengthen roots and prevent fall.',
   'slim-fit-weightloss': 'Ayurvedic herbal blend supporting active metabolism.',
   'kambu-maavu': 'Nutrient-rich pearl millet flour for authentic traditional cooking.',
   'black-rice-kanji': 'Heritage black rice porridge mix rich in antioxidants.',
   'millet-health-mix': 'Classic multi-millet porridge for whole-family vitality.',
   'abc-malt': 'Premium apple, beetroot, and carrot vitalising drink.',
-};
-
-const premiumBadges = {
-  'herbal-bath-powder': '✦ Heritage Bestseller',
-  'wild-turmeric-powder': '✦ Ayurvedic Essential',
-  'gram-flour': '✦ Traditional Formula',
-  'green-gram-flour': '✦ Handcrafted Wellness',
-  'pink-face-pack': '✦ Signature Collection',
-  'ayurglow-hair-pack': '✦ Customer Favorite',
-  'kerela-ayurvedic-hair-oil': '✦ Heritage Bestseller',
-  'slim-fit-weightloss': '✦ Ayurvedic Essential',
-  'kambu-maavu': '✦ Traditional Formula',
-  'black-rice-kanji': '✦ Signature Collection',
-  'millet-health-mix': '✦ Handcrafted Wellness',
-  'abc-malt': '✦ Customer Favorite',
+  'chettinad-kulambu-chilli-powder': 'Authentic hand-roasted Chettinad kulambu chilli powder.',
 };
 
 export default function ProductCard({ product, addToCart }) {
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+
+  const activeVariant = product.variants ? product.variants[selectedVariantIndex] : null;
+  const currentPrice = activeVariant ? activeVariant.price : product.price;
+  const currentOriginalPrice = activeVariant ? activeVariant.originalPrice : product.originalPrice;
+  const currentWeight = activeVariant ? activeVariant.weight : product.weight;
+
   const benefit = benefitStatements[product.id] || 'Crafted from nature for holistic herbal well-being.';
-  const badge = premiumBadges[product.id] || '✦ Traditional Formula';
+
+  const handleAddToCart = () => {
+    if (activeVariant) {
+      addToCart({
+        ...product,
+        id: `${product.id}-${activeVariant.weight}`,
+        price: activeVariant.price,
+        originalPrice: activeVariant.originalPrice,
+        weight: activeVariant.weight,
+      });
+    } else {
+      addToCart(product);
+    }
+  };
 
   return (
     <motion.div 
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="rounded-[24px] overflow-hidden flex flex-col justify-between h-[510px] group relative shadow-[0_12px_40px_rgba(10,77,46,0.03)] hover:shadow-[0_20px_50px_rgba(10,77,46,0.08)] bg-[#FAF8F3] border border-[#0A4D2E]/5 transition-all duration-500"
+      className="rounded-[24px] overflow-hidden flex flex-col justify-between h-[490px] group relative shadow-[0_12px_40px_rgba(10,77,46,0.03)] hover:shadow-[0_20px_50px_rgba(10,77,46,0.08)] bg-[#FAF8F3] border border-[#0A4D2E]/5 transition-all duration-500 text-left"
     >
-      {/* Product Image Container (60-70% product scale) */}
-      <div className="relative w-full h-[240px] overflow-hidden bg-[#FAF8F3] p-4 flex items-center justify-center border-b border-[#0A4D2E]/5">
+      {/* Product Image Container */}
+      <div className="relative w-full h-[230px] overflow-hidden bg-[#FAF8F3] border-b border-[#0A4D2E]/5">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-[70%] h-[70%] object-contain rounded-2xl group-hover:scale-106 transition-transform duration-700 ease-out" 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
         />
-        
-        {/* Luxury Badge overlay */}
-        <div className="absolute top-4 left-4 z-10">
-          <span className="bg-[#0A4D2E] text-[#D4AF37] text-[8px] font-bold uppercase tracking-[0.16em] px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1">
-            {badge}
-          </span>
-        </div>
 
         {/* Discount badge overlay if applicable */}
-        {product.originalPrice && (
+        {currentOriginalPrice && (
           <div className="absolute top-4 right-4 z-10">
             <span className="bg-[#D4AF37] text-[#0A4D2E] text-[8px] font-black px-2.5 py-1.5 rounded-lg shadow-sm uppercase tracking-wider">
-              {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+              {Math.round(((currentOriginalPrice - currentPrice) / currentOriginalPrice) * 100)}% OFF
             </span>
           </div>
         )}
@@ -70,20 +70,16 @@ export default function ProductCard({ product, addToCart }) {
       {/* Product Info Content */}
       <div className="p-6 flex-grow flex flex-col justify-between text-left">
         <div className="space-y-2">
-          {/* Tagline & Rating */}
+          {/* Category Tag */}
           <div className="flex items-center justify-between">
             <span className="text-[9px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] leading-none">
-              Ancient Ayurvedic Formula
-            </span>
-            <span className="flex items-center text-amber-500 gap-0.5 leading-none">
-              <FiStar className="fill-amber-500 text-xs" />
-              <span className="text-[#1F2937] text-[11px] font-bold ml-0.5">{product.rating}</span>
+              {product.category}
             </span>
           </div>
 
           {/* Product Name & Tamil Name */}
           <div>
-            <h3 className="text-lg font-medium text-[#1F2937] leading-tight font-display group-hover:text-[#0A4D2E] transition-colors duration-300">
+            <h3 className="text-lg font-medium text-[#1F2937] leading-tight font-display group-hover:text-[#0A4D2E] transition-colors duration-300 line-clamp-1">
               {product.name}
             </h3>
             <p className="text-[10px] text-emerald-800/60 font-bold uppercase tracking-wider mt-1">{product.tamilName}</p>
@@ -97,15 +93,42 @@ export default function ProductCard({ product, addToCart }) {
 
         {/* Pricing and Actions */}
         <div className="mt-4 pt-4 border-t border-[#0A4D2E]/5">
-          <div className="flex items-baseline justify-between mb-4">
-            <div className="flex items-baseline gap-2">
-              <span className="text-xl font-bold text-[#1F2937]">₹{product.price}</span>
-              {product.originalPrice && (
-                <span className="text-xs text-[#1F2937]/30 line-through font-semibold">₹{product.originalPrice}</span>
-              )}
+          {/* Variants selection if available */}
+          {product.variants ? (
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-bold text-[#1F2937]">₹{currentPrice}</span>
+                {currentOriginalPrice && (
+                  <span className="text-xs text-[#1F2937]/30 line-through font-semibold">₹{currentOriginalPrice}</span>
+                )}
+              </div>
+              <div className="flex gap-1">
+                {product.variants.map((v, idx) => (
+                  <button
+                    key={v.weight}
+                    onClick={() => setSelectedVariantIndex(idx)}
+                    className={`text-[9px] font-bold px-2 py-1 rounded-md uppercase tracking-wider transition ${
+                      selectedVariantIndex === idx
+                        ? 'bg-[#0A4D2E] text-white'
+                        : 'bg-[#0A4D2E]/10 text-[#0A4D2E] hover:bg-[#0A4D2E]/20'
+                    }`}
+                  >
+                    {v.weight}
+                  </button>
+                ))}
+              </div>
             </div>
-            <span className="text-[10px] font-bold text-[#1F2937]/50 bg-[#0A4D2E]/5 px-2.5 py-1 rounded-full uppercase tracking-wider">{product.weight}</span>
-          </div>
+          ) : (
+            <div className="flex items-baseline justify-between mb-4">
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-bold text-[#1F2937]">₹{product.price}</span>
+                {product.originalPrice && (
+                  <span className="text-xs text-[#1F2937]/30 line-through font-semibold">₹{product.originalPrice}</span>
+                )}
+              </div>
+              <span className="text-[10px] font-bold text-[#1F2937]/50 bg-[#0A4D2E]/5 px-2.5 py-1 rounded-full uppercase tracking-wider">{product.weight}</span>
+            </div>
+          )}
 
           <div className="flex gap-3">
             <Link 
@@ -115,7 +138,7 @@ export default function ProductCard({ product, addToCart }) {
               Explore Product
             </Link>
             <button 
-              onClick={() => addToCart(product)} 
+              onClick={handleAddToCart} 
               className="bg-[#0A4D2E] hover:bg-[#0F7A43] text-white font-bold text-[9px] uppercase tracking-[0.16em] py-3 rounded-full transition-all duration-300 shadow-sm active:scale-98 cursor-pointer flex-1"
             >
               Add to Cart

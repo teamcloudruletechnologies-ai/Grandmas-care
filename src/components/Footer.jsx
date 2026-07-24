@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
-import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
+import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FiMail, FiSend } from 'react-icons/fi';
 import logoImg from '../assets/logo.jpg';
 
 export default function Footer() {
@@ -17,97 +17,107 @@ export default function Footer() {
     }
   };
 
+  const quickLinks1 = [
+    { name: 'Home', path: '/' },
+    { name: 'Shop', path: '/shop' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'FAQ', path: '#' }
+  ];
+
+  const quickLinks2 = [
+    { name: 'Privacy Policy', path: '#' },
+    { name: 'Shipping Policy', path: '#' },
+    { name: 'Returns', path: '#' },
+    { name: 'Customer Support', path: '#' }
+  ];
+
   return (
-    <footer className="bg-[#006536] border-t border-white/10 pt-24 pb-12 text-white font-body relative overflow-hidden">
+    <footer className="bg-[#0A4D2E] text-white font-body relative overflow-hidden border-t border-white/5 pt-20 pb-12">
       
       {/* Subtle organic light overlay */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-white/5 blur-[120px] -bottom-60 -left-40 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        
+        {/* Top Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-16">
 
-          {/* Left Column: Brand */}
-          <div className="space-y-6 text-left">
-            <div className="flex items-center gap-3">
-              <img src={logoImg} alt="Grandmas Care Logo" className="w-11 h-11 object-cover rounded-full border border-white/20 shadow-sm" />
-              <div className="flex flex-col items-start">
-                <span className="text-xl font-light font-display tracking-[0.12em] text-white flex items-center leading-none">
-                  GRANDMAS<span className="text-emerald-300 font-medium ml-1.5">CARE</span>
-                </span>
-                <span className="text-[7px] font-bold tracking-[0.25em] uppercase text-emerald-300 block mt-2.5 leading-none">
-                  Botanical Apothecary
-                </span>
-              </div>
+          {/* Left Column: Brand, Tagline & Socials */}
+          <div className="lg:col-span-4 space-y-6 text-left">
+            <div className="flex items-center gap-3.5 group">
+              <img 
+                src={logoImg} 
+                alt="Grandmas Care Logo" 
+                className="w-11 h-11 object-cover rounded-full border border-white/20 shadow-sm" 
+              />
+              <span className="font-logo font-semibold text-[24px] sm:text-[30px] md:text-[34px] tracking-[1.2px] leading-[1.1] text-white flex items-center whitespace-nowrap">
+                GRANDMAS<span className="text-[#D4AF37] ml-1.5">CARE</span>
+              </span>
             </div>
-            <p className="text-[13px] text-white/80 leading-relaxed font-semibold">
-              100% natural, traditional Tamil herbal wellness remedies. Blended carefully under sun exposure and prepared in micro-batches with grandmother's love.
+            <p className="text-xs text-white/70 italic font-medium leading-relaxed">
+              "Crafting Wellness Through Tradition."
             </p>
-            <div className="flex gap-3">
+            
+            {/* Social Icons with Luxury Styling */}
+            <div className="flex gap-3 pt-2">
               {[
+                { icon: <FaInstagram />, url: 'https://www.instagram.com/grandmascare?igsh=bWduMjVqZnl1dWt4' },
                 { icon: <FaFacebookF />, url: 'https://facebook.com' },
-                { icon: <FaInstagram />, url: 'https://instagram.com' },
-                { icon: <FaTwitter />, url: 'https://twitter.com' },
-                { icon: <FaWhatsapp />, url: 'https://api.whatsapp.com/send?phone=+918015080361' }
+                { icon: <FaWhatsapp />, url: 'https://api.whatsapp.com/send?phone=+918015080361' },
+                { icon: <FiMail />, url: 'mailto:info@grandmascare.in' }
               ].map((social, idx) => (
-                <a key={idx} href={social.url} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white text-white hover:text-[#006536] flex items-center justify-center transition border border-white/10 hover:border-white hover:-translate-y-0.5 duration-300">
+                <a 
+                  key={idx} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="w-8.5 h-8.5 rounded-full bg-white/10 hover:bg-[#D4AF37] border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#0A4D2E] flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                >
                   {social.icon}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Middle Column 1: Links */}
-          <div className="text-left">
-            <h4 className="text-white font-medium font-display text-xs uppercase tracking-[0.24em] mb-7 flex items-center gap-2.5">
-              <span className="w-4.5 h-[1.5px] bg-amber-400 inline-block" />
-              <span>Navigation</span>
+          {/* Center Column: Quick Links */}
+          <div className="lg:col-span-4 text-left">
+            <h4 className="text-[#D4AF37] font-semibold text-[10px] uppercase tracking-[0.24em] mb-6">
+              Quick Links
             </h4>
-            <ul className="space-y-4 text-[10px] tracking-[0.16em] uppercase font-bold text-white/85">
-              <li><Link to="/" className="hover:text-amber-300 transition duration-300">Home</Link></li>
-              <li><Link to="/shop" className="hover:text-amber-300 transition duration-300">Catalog</Link></li>
-              <li><Link to="/services" className="hover:text-amber-300 transition duration-300">Wellness</Link></li>
-              <li><Link to="/about" className="hover:text-amber-300 transition duration-300">Heritage</Link></li>
-              <li><Link to="/contact" className="hover:text-amber-300 transition duration-300">Contact</Link></li>
-            </ul>
+            <div className="grid grid-cols-2 gap-4">
+              <ul className="space-y-3.5 text-[9px] sm:text-[10px] tracking-[0.16em] uppercase font-bold text-white/75">
+                {quickLinks1.map((link, i) => (
+                  <li key={i}>
+                    <Link to={link.path} className="hover:text-[#D4AF37] transition duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-3.5 text-[9px] sm:text-[10px] tracking-[0.16em] uppercase font-bold text-white/75">
+                {quickLinks2.map((link, i) => (
+                  <li key={i}>
+                    <Link to={link.path} className="hover:text-[#D4AF37] transition duration-300">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Middle Column 2: Address */}
-          <div className="text-left">
-            <h4 className="text-white font-medium font-display text-xs uppercase tracking-[0.24em] mb-7 flex items-center gap-2.5">
-              <span className="w-4.5 h-[1.5px] bg-emerald-400 inline-block" />
-              <span>Store Details</span>
-            </h4>
-            <ul className="space-y-4.5 text-[13px] font-semibold text-white/90">
-              <li className="flex gap-3.5 items-start">
-                <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-300 flex-shrink-0 mt-0.5 shadow-sm">
-                  <FiMapPin className="text-sm" />
-                </div>
-                <span className="leading-relaxed font-semibold">123, Anna Salai, Mount Road, Chennai, Tamil Nadu - 600002</span>
-              </li>
-              <li className="flex gap-3.5 items-center">
-                <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-300 flex-shrink-0 shadow-sm">
-                  <FiPhone className="text-sm" />
-                </div>
-                <a href="tel:+918015080361" className="hover:text-amber-300 transition duration-300 font-semibold">+91 80150 80361</a>
-              </li>
-              <li className="flex gap-3.5 items-center">
-                <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-emerald-300 flex-shrink-0 shadow-sm">
-                  <FiMail className="text-sm" />
-                </div>
-                <a href="mailto:info@grandmascare.in" className="hover:text-amber-300 transition duration-300 font-semibold font-display tracking-wide">info@grandmascare.in</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Right Column: Newsletter */}
-          <div className="text-left">
-            <h4 className="text-white font-medium font-display text-xs uppercase tracking-[0.24em] mb-7 flex items-center gap-2.5">
-              <span className="w-4.5 h-[1.5px] bg-amber-400 inline-block" />
-              <span>Newsletter</span>
-            </h4>
-            <p className="text-[13px] text-white/80 mb-5 leading-relaxed font-semibold">
-              Subscribe to receive traditional health guides, remedy tips, and organic stock updates.
-            </p>
+          {/* Right Column: Newsletter Subscription */}
+          <div className="lg:col-span-4 text-left space-y-5">
+            <div>
+              <h4 className="text-white font-medium font-display text-sm tracking-wider mb-2">
+                Join Our Wellness Community
+              </h4>
+              <p className="text-[11px] text-white/60 leading-relaxed">
+                Subscribe to receive traditional health guides, remedy tips, and organic updates.
+              </p>
+            </div>
+            
             <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5">
               <div className="relative">
                 <input 
@@ -116,24 +126,34 @@ export default function Footer() {
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)} 
                   placeholder="Enter email address" 
-                  className="w-full bg-white/10 border border-white/20 rounded-xl py-3.5 pl-4 pr-12 text-xs text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 focus:bg-white/15 transition duration-300 shadow-sm font-semibold" 
+                  className="w-full bg-white/5 border border-white/10 rounded-full py-3.5 pl-4 pr-12 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-[#D4AF37]/50 focus:bg-white/10 transition duration-300 font-semibold" 
                 />
-                <button type="submit" className="absolute right-1.5 top-1.5 p-2 bg-emerald-600 text-white hover:bg-emerald-500 rounded-lg transition duration-300 cursor-pointer" title="Subscribe">
+                <button 
+                  type="submit" 
+                  className="absolute right-1.5 top-1.5 w-9.5 h-9.5 bg-[#D4AF37] hover:bg-white text-[#0A4D2E] hover:text-[#0A4D2E] rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer shadow-sm hover:scale-105 active:scale-95" 
+                  title="Subscribe"
+                >
                   <FiSend className="text-xs" />
                 </button>
               </div>
-              {subscribed && <span className="text-[11px] text-emerald-300 font-bold animate-pulse mt-1 font-semibold">🌿 Subscribed successfully!</span>}
+              {subscribed && (
+                <span className="text-[11px] text-[#D4AF37] font-bold animate-pulse">
+                  🌿 Subscribed successfully!
+                </span>
+              )}
             </form>
           </div>
+
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 font-semibold">
-          <p>&copy; {new Date().getFullYear()} Grandmas Care. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 sm:mt-0 font-bold tracking-[0.16em] uppercase text-[9px] text-white/70">
-            <a href="#" className="hover:text-white transition duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition duration-300">Terms of Service</a>
-          </div>
+        {/* Bottom Bar with Thin Gold Divider */}
+        <div className="border-t border-[#D4AF37]/35 pt-8 mt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 font-medium">
+          <p>© 2026 Grandmas Care</p>
+          <p className="mt-2 sm:mt-0 font-medium italic text-white/60">
+            Made with Nature & Tradition
+          </p>
         </div>
+
       </div>
     </footer>
   );

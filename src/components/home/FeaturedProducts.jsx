@@ -86,7 +86,7 @@ export default function FeaturedProducts() {
           ))}
         </div>
 
-        {/* View All */}
+        {/* View All Products Button */}
         <div className="text-center mt-14">
           <Link
             to="/shop"
